@@ -77,6 +77,8 @@ class VOCDataset(Dataset):
 
 def data_test():
     print(sys.path)
+    import numpy as np
+    import matplotlib.pyplot as plt
     from transformer import DataTransform
     
     voc_classes = ['aeroplane', 'bicycle', 'bird', 'boat',
@@ -121,11 +123,13 @@ def data_test():
     )
 
     batch_iterator = iter(train_loader)
-    imgs, targets = next(batch_iterator)
+    imgs, anno_class_imgs = next(batch_iterator)
 
     print(imgs.size())
-    print(len(targets))
-    print(targets[1].size())
+
+    val_img = imgs[0].numpy().transpose((1, 2, 0))
+    plt.imshow(val_img)
+    plt.show()
 
 
 if __name__ == "__main__":
