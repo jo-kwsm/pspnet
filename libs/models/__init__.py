@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from PSPNet import PSPNet
+from pspnet import PSPNet
 
 __all__ = ["get_model"]
 
