@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from modules import AuxiliaryPSPlayers, DecodePSPFeature, FeatureMap_convolution, PyramidPooling, ResidualBlockPSP
+from .modules import AuxiliaryPSPlayers, DecodePSPFeature, FeatureMap_convolution, PyramidPooling, ResidualBlockPSP
 
 
 class PSPNet(nn.Module):
