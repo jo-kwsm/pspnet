@@ -65,12 +65,12 @@ def train(
     batch_time = AverageMeter("Time", ":6.3f")
     data_time = AverageMeter("Data", ":6.3f")
     losses = AverageMeter("Loss", ":.4e")
-    # TODO object detection の評価指標に変更
+    # TODO semantic segmentation の評価指標に変更
     # top1 = AverageMeter("Acc@1", ":6.2f")
 
     progress = ProgressMeter(
         len(loader),
-        [batch_time, data_time, losses], # TODO object detection の評価指標追加
+        [batch_time, data_time, losses], # TODO semantic segmentation の評価指標追加
         prefix="Epoch: [{}]".format(epoch),
     )
 

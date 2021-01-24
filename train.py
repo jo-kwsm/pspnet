@@ -77,7 +77,7 @@ def main():
     )
 
     n_classes = len(voc_classes) + 1
-    model = get_model(n_classes=21)
+    model = get_model(n_classes=21, pretrained=config.pretrained)
     model.to(device)
 
     optimizer, scheduler = get_optimizer(model)
