@@ -7,7 +7,7 @@ import torch.optim as optim
 __all__ = ["get_optimizer"]
 
 
-def get_optimizer(model: nn.Module) -> Tuple[Any, Any]:
+def get_optimizer(model: nn.Module, max_epoch: int) -> Tuple[Any, Any]:
     optimizer = optim.SGD([
         {'params': model.feature_conv.parameters(), 'lr': 1e-3},
         {'params': model.feature_res_1.parameters(), 'lr': 1e-3},
@@ -19,10 +19,14 @@ def get_optimizer(model: nn.Module) -> Tuple[Any, Any]:
         {'params': model.aux.parameters(), 'lr': 1e-2},
     ], momentum=0.9, weight_decay=0.0001)
     
-    scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda_epoch)
+    lr_lambda = lambda_epoch(max_epoch)
+    scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda)
 
     return optimizer, scheduler
 
-def lambda_epoch(epoch):
-    max_epoch = 30
-    return math.pow((1-epoch/max_epoch), 0.9)
+class lambda_epoch():
+    def __init__(self, max_epoch: int = 30) -> None:
+        self.max_epoch = max_epoch
+
+    def __call__(self, epoch):
+        return math.pow((1-epoch/self.max_epoch), 0.9)

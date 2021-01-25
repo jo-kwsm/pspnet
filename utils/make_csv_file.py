@@ -6,7 +6,7 @@ import pandas as pd
 
 def get_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="make csv files for voc object detection dataset"
+        description="make csv files for voc semantic segmentation dataset"
     )
     parser.add_argument(
         "--dataset_dir",

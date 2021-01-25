@@ -4,7 +4,6 @@ from typing import Any, Optional
 import pandas as pd
 from PIL import Image
 import numpy as np
-import torch
 import cv2
 import torch
 from torch.utils.data import DataLoader, Dataset

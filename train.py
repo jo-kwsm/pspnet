@@ -25,7 +25,7 @@ random_seed = 1234
 def get_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="""
-        train SSD for object detection with VOC2012 Dataset.
+        train PSPNet for object detection with VOC2012 Dataset.
         """
     )
     parser.add_argument("config", type=str, help="path of a config file")
@@ -80,7 +80,7 @@ def main():
     model = get_model(n_classes=21, pretrained=config.pretrained)
     model.to(device)
 
-    optimizer, scheduler = get_optimizer(model)
+    optimizer, scheduler = get_optimizer(model, config.max_epoch)
 
     begin_epoch = 0
     best_loss = float("inf")
