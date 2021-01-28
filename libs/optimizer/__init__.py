@@ -18,11 +18,12 @@ def get_optimizer(model: nn.Module, max_epoch: int) -> Tuple[Any, Any]:
         {'params': model.decode_feature.parameters(), 'lr': 1e-2},
         {'params': model.aux.parameters(), 'lr': 1e-2},
     ], momentum=0.9, weight_decay=0.0001)
-    
+
     lr_lambda = lambda_epoch(max_epoch)
     scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda)
 
     return optimizer, scheduler
+
 
 class lambda_epoch():
     def __init__(self, max_epoch: int = 30) -> None:
